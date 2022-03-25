@@ -9,7 +9,12 @@ import (
 
 func AXImmTransceiver(ctx context.Context, device string, debug bool) (chan<- uint8, <-chan uint8, <-chan struct{}) {
 
-	port, err := os.Open(device)
+	fi, err := os.Lstat(device)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	port, err := os.OpenFile(device, os.O_APPEND, fi.Mode())
 	if err != nil {
 		log.Fatal(err)
 	}
