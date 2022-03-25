@@ -14,7 +14,7 @@ func AXImmTransceiver(ctx context.Context, device string, debug bool) (chan<- ui
 		log.Fatal(err)
 	}
 
-	port, err := os.OpenFile(device, os.O_APPEND, fi.Mode())
+	port, err := os.OpenFile(device, os.O_APPEND|os.O_RDWR, fi.Mode())
 	if err != nil {
 		log.Fatal(err)
 	}
