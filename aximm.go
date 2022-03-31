@@ -37,9 +37,6 @@ func AXImmTransceiver(ctx context.Context, device string, debug bool) (chan<- ui
 			if err != nil {
 				break
 			}
-			if n == 0 {
-				break
-			}
 			for i := 0; i < n; i++ {
 				select {
 				case <-ctx.Done():
