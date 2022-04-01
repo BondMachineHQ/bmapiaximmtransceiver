@@ -35,8 +35,10 @@ func AXImmTransceiver(ctx context.Context, device string, debug bool) (chan<- ui
 		for {
 			n, err := port.Read(buff)
 			if err != nil {
-				break
+				log.Println(err)
+				continue
 			}
+
 			for i := 0; i < n; i++ {
 				select {
 				case <-ctx.Done():
